@@ -131,9 +131,12 @@ function options.get_options(modname)
     log.error(('(%s) could not load module\n\t%s'):format(modname, result))
     return
   end
+
   if type(result) == 'table' then
     return result.options or {}
   end
+
+  return {}
 end
 
 ---@param ... string
