@@ -6,7 +6,7 @@ local options = {}
 ---@field _type 'option'
 ---@field default any default value
 ---@field description string description
----@field validate type|fun(v?: any): boolean validator passed to vim.validate
+---@field validate vim.validate.Validator
 ---@field optional boolean
 
 ---@class chai.option.spec
@@ -60,13 +60,7 @@ end
 ---@param opt chai.option
 ---@param value any
 function options.validate(name, opt, value)
-  vim.validate(
-    name,
-    value,
-    opt.validate,
-    opt.optional,
-    ('(%s) invalid config option: %s'):format(name, vim.inspect(value))
-  )
+  vim.validate(name, value, opt.validate, opt.optional)
   return value
 end
 
