@@ -41,10 +41,10 @@ function options.makeopt(opt)
     return {}
   end
 
-  vim.validate('description', opt.description, 'string')
-  vim.validate('validator', opt.validate, { 'string', 'callable' })
-  vim.validate('optional', opt.optional, 'boolean', true)
-  vim.validate('default', opt.default, function(v)
+  vim.validate('opt.description', opt.description, 'string')
+  vim.validate('opt.validate', opt.validate, { 'string', 'function' })
+  vim.validate('opt.optional', opt.optional, 'boolean', true)
+  vim.validate('opt.default', opt.default, function(v)
     if opt.optional then
       return true
     end
